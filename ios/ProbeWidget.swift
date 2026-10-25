@@ -24,14 +24,15 @@ struct ProbeProvider: AppIntentTimelineProvider {
 struct ProbeWidgetView: View {
     @Environment(\.widgetFamily) var family
     let entry: ProbeEntry
+    var petSize: CGFloat { family == .systemSmall ? 72 : 88 }
     var pet: some View {
         Button(intent: ReactIntent()) {
             ZStack {
                 Image("pet_\(entry.character)_\(entry.reaction ? "b" : "a")")
                     .resizable().scaledToFit()
-                    .frame(width: 683 * 88 / 330, height: 683 * 88 / 330)
-                    .offset(x: (341.5 - 256) * 88 / 330, y: (341.5 - 277) * 88 / 330)
-            }.frame(width: 88, height: 88).clipped()
+                    .frame(width: 683 * petSize / 330, height: 683 * petSize / 330)
+                    .offset(x: (341.5 - 256) * petSize / 330, y: (341.5 - 277) * petSize / 330)
+            }.frame(width: petSize, height: petSize).clipped()
                 .rotationEffect(.degrees(entry.reaction ? -5 : 0))
                 .animation(.spring(duration: 0.76), value: entry.reaction)
         }.buttonStyle(.plain)
@@ -39,7 +40,7 @@ struct ProbeWidgetView: View {
     var body: some View {
         Group {
             if family == .systemSmall {
-                VStack(spacing: 6) { HStack(spacing: 4) { pet; Text(ProbeData.copy).font(.system(size: 11)) }; Image("post").resizable().scaledToFit() }
+                VStack(spacing: 6) { HStack(spacing: 4) { pet; Text(ProbeData.copy).font(.system(size: 10)).lineLimit(5).minimumScaleFactor(0.8).layoutPriority(1) }; Image("post").resizable().scaledToFit() }
             } else {
                 GeometryReader { geometry in
                     HStack(spacing: 8) {
