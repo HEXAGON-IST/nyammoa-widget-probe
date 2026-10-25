@@ -13,7 +13,8 @@ assert args.app.is_dir() and args.app.suffix=='.app'
 ledger=json.loads((Path(__file__).resolve().parent.parent/'device-execution-matrix.json').read_text())
 def sim(*parts):
     print(json.dumps({'simctl':parts}),flush=True)
-    return subprocess.check_output(['xcrun','simctl',*parts],text=True,timeout=180 if parts[0]=='bootstatus' else 90).strip()
+    timeout=240 if parts[0]=='install' else 180 if parts[0]=='bootstatus' else 90
+    return subprocess.check_output(['xcrun','simctl',*parts],text=True,timeout=timeout).strip()
 def emit(path):
     print('PROBE_PNG_BEGIN '+path.name,flush=True)
     encoded=base64.b64encode(path.read_bytes()).decode()

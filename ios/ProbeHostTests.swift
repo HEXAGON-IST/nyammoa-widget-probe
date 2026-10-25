@@ -74,7 +74,7 @@ final class ProbeHostTests: XCTestCase {
         guard tapNamed(["Edit Home Screen", "홈 화면 편집"]) else { try unavailable(surface, "Home editing menu unavailable"); return }
         _ = tapNamed(["Edit", "편집"])
         guard tapNamed(["Add Widget", "Add Widgets", "위젯 추가", "Add"]) else { try unavailable(surface, "Widget gallery entry unavailable"); return }
-        let search = board.searchFields.firstMatch
+        let search = board.searchFields["Search Widgets"]
         guard search.waitForExistence(timeout: 8) else { try unavailable(surface, "Widget gallery search unavailable"); return }
         search.tap(); search.typeText("냠모아")
         guard tapNamed(["냠모아 v25 검증"]) else { try unavailable(surface, "Widget provider not found in gallery"); return }

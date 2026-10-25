@@ -10,7 +10,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: ios-profile-matrix
+  group: ios-profile-matrix-${{ inputs.profiles }}
   cancel-in-progress: true
 jobs:
   plan:

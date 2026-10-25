@@ -31,6 +31,10 @@ try:
         except subprocess.TimeoutExpired:print('HOST_TEST_TIMEOUT',flush=True)
     print((folder/'test.log').read_text(errors='replace'),flush=True)
 finally:
+    try:
+        print('PROBE_EXTENSION_LOG '+sim('spawn',device,'log','show','--last','8m','--style','compact',
+            '--predicate','process == "MoaNotification" OR eventMessage CONTAINS "com.nyammoa.visualprobe.notification"',timeout=60),flush=True)
+    except (subprocess.CalledProcessError,subprocess.TimeoutExpired):print('EXTENSION_LOG_UNAVAILABLE',flush=True)
     if result_bundle.exists():
         exports=folder/'attachments'
         try:
