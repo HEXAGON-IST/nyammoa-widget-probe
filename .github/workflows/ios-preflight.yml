@@ -3,6 +3,12 @@
 name: Free iOS simulator preflight
 on:
   workflow_dispatch:
+    inputs:
+      model_id:
+        description: Research profile ID or ALL
+        required: true
+        default: I09
+        type: string
 permissions:
   contents: read
 concurrency:
@@ -30,9 +36,11 @@ jobs:
       # artifact/cache/Packages/Pages/TestFlight/원격 데스크톱을 사용하지 않는다.
       # 위젯·알림 실제 관찰/기종 매트릭스는 다음 단계이며 빌드 성공으로 PASS 처리하지 않는다.
       - name: Launch exact researched iPhone profiles on an installed runtime
+        env:
+          MODEL_ID: ${{ inputs.model_id }}
         run: |
           RUNTIME=$(xcrun simctl list runtimes --json | python3 -c 'import json,sys; r=[x for x in json.load(sys.stdin)["runtimes"] if x.get("isAvailable") and "iOS" in x["identifier"]]; print(r[-1]["identifier"] if r else "")')
           test -n "$RUNTIME"
-          python3 ios/run-model-matrix.py --app "$RUNNER_TEMP/nyammoa-v25/Build/Products/Debug-iphonesimulator/MoaVisualProbe.app" --runtime "$RUNTIME" --output "$RUNNER_TEMP/model-results"
+          python3 ios/run-model-matrix.py --app "$RUNNER_TEMP/nyammoa-v25/Build/Products/Debug-iphonesimulator/MoaVisualProbe.app" --runtime "$RUNTIME" --only "$MODEL_ID" --output "$RUNNER_TEMP/model-results"
           cat "$RUNNER_TEMP/model-results/matrix-results.json"
           echo 'Widget/notification host acceptance: NOT_TESTED' >> "$GITHUB_STEP_SUMMARY"

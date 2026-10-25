@@ -38,5 +38,7 @@
 		<key>NSExtensionPrincipalClass</key>
 		<string>$(PRODUCT_MODULE_NAME).ProbeNotification</string>
 	</dict>
+	<key>CFBundleDisplayName</key>
+	<string>Widget probe notification</string>
 </dict>
 </plist>

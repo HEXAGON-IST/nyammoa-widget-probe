@@ -1,11 +1,11 @@
 {
-  "status": "PREPARED_NOT_UPLOADED",
+  "status": "REVISION_PREPARED_AFTER_OBSERVED_INSTALL_FAILURE",
   "repository": "HEXAGON-IST/nyammoa-widget-probe",
   "files": [
     {
       "path": ".github/workflows/ios-preflight.yml",
-      "sha256": "63d218e6cb0fbd537f6e06381a9b9121ba1c36cbfa6b9c4d83955f21d770786f",
-      "bytes": 2145
+      "sha256": "fa799148a7abfa5744c0c704e4c24f6686a9ae9b77fb106b09b41916713c733d",
+      "bytes": 2369
     },
     {
       "path": "device-execution-matrix.json",
@@ -29,8 +29,8 @@
     },
     {
       "path": "ios/NotificationInfo.plist",
-      "sha256": "e1489d693b435713dd6594ff649a3a61dc6f54f6d72e4fe3b68d644ecd16c8c6",
-      "bytes": 1348
+      "sha256": "c6060d9b573ee5a3744cf4a42895eda178d62715cf85f88b9c0781ed1156a872",
+      "bytes": 1382
     },
     {
       "path": "ios/ProbeApp.swift",
@@ -49,8 +49,8 @@
     },
     {
       "path": "ios/run-model-matrix.py",
-      "sha256": "36dc021f16d42a76bd62e5a01da5ae5c109c1954111825b7d7be7ca5360d17fe",
-      "bytes": 2567
+      "sha256": "e54313e7e8379ce2cd938fc000db85e904309c5a0f461055fc0f42ea8b171290",
+      "bytes": 3418
     },
     {
       "path": "ios/Shared/Assets.xcassets/AppIcon.appiconset/Contents.json",
@@ -209,8 +209,8 @@
     },
     {
       "path": "ios/WidgetInfo.plist",
-      "sha256": "9b7418c00d0830e5944d0cb52acc95454f4fc76fd41ede1d0eb01fc6e810cf77",
-      "bytes": 837
+      "sha256": "60296467a440be61389f841d8f57605b0607cf0c1283c9856edf9cd07944b25f",
+      "bytes": 873
     },
     {
       "path": "README.md",
