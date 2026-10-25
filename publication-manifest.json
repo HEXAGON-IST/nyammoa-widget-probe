@@ -103,8 +103,8 @@
     },
     {
       "path": "ios/ProbeWidget.swift",
-      "sha256": "f18c449f8fb9970e0dc5ef6617070210a629172e76542fb057bbae6e8764e753",
-      "bytes": 2740
+      "sha256": "da09b2801f48a868bfb4a6829cd260e5875cef76094a97e02c019c9407d58a99",
+      "bytes": 2992
     },
     {
       "path": "ios/run-host.py",

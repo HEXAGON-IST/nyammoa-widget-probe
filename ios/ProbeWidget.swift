@@ -26,7 +26,12 @@ struct ProbeWidgetView: View {
     let entry: ProbeEntry
     var pet: some View {
         Button(intent: ReactIntent()) {
-            Image("pet_\(entry.character)_\(entry.reaction ? "b" : "a")").resizable().scaledToFit().frame(width: 72, height: 72)
+            ZStack {
+                Image("pet_\(entry.character)_\(entry.reaction ? "b" : "a")")
+                    .resizable().scaledToFit()
+                    .frame(width: 683 * 88 / 330, height: 683 * 88 / 330)
+                    .offset(x: (341.5 - 256) * 88 / 330, y: (341.5 - 277) * 88 / 330)
+            }.frame(width: 88, height: 88).clipped()
                 .rotationEffect(.degrees(entry.reaction ? -5 : 0))
                 .animation(.spring(duration: 0.76), value: entry.reaction)
         }.buttonStyle(.plain)
@@ -44,7 +49,7 @@ struct ProbeWidgetView: View {
                 }
             }
         }.widgetURL(ProbeData.destination)
-            .containerBackground(Color(red: 1, green: 0.988, blue: 0.961), for: .widget)
+            .containerBackground(Color(red: 220.0 / 255, green: 231.0 / 255, blue: 206.0 / 255), for: .widget)
     }
 }
 @main struct ProbeWidget: Widget {
