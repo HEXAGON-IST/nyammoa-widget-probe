@@ -60,8 +60,8 @@
     },
     {
       "path": "ios/ProbeHostTests.swift",
-      "sha256": "87003e84bdc5c6936462164e1356b929233c463e871becea95062855c6c991d5",
-      "bytes": 5988
+      "sha256": "0358fb5f9a03d23bbe4cb330d29c160ef898fa4b7011a11a741a6da2f4ccd779",
+      "bytes": 6812
     },
     {
       "path": "ios/ProbeNotification.swift",

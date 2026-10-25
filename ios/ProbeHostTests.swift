@@ -68,7 +68,7 @@ final class ProbeHostTests: XCTestCase {
 
     func addWidget(_ surface: String, medium: Bool) throws {
         XCUIDevice.shared.press(.home); Thread.sleep(forTimeInterval: 2)
-        let icon = board.icons["냠모아 v25 검증"]
+        let icon = board.icons.matching(NSPredicate(format: "identifier == %@ AND (value == nil OR NOT (value BEGINSWITH %@))", "냠모아 v25 검증", "Widget")).firstMatch
         guard icon.waitForExistence(timeout: 10) else { try unavailable(surface, "Probe app icon absent on current page"); return }
         icon.press(forDuration: 1.3)
         guard tapNamed(["Edit Home Screen", "홈 화면 편집"]) else { try unavailable(surface, "Home editing menu unavailable"); return }
@@ -84,15 +84,29 @@ final class ProbeHostTests: XCTestCase {
         guard selected.waitForExistence(timeout: 5) else { try unavailable(surface, "Requested widget family not selected"); return }
         shot(surface + "-gallery")
         guard tapNamed(["Add Widget", "위젯 추가"]) else { try unavailable(surface, "Gallery add control unavailable"); return }
-        _ = tapNamed(["Done", "완료"]); XCUIDevice.shared.press(.home)
-        let copy = board.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", message)).firstMatch
-        guard copy.waitForExistence(timeout: 15) else { try unavailable(surface, "Fixture text not found on installed widget"); return }
-        shot(surface + "-home"); result(surface, "WIDGET_CONTENT_OBSERVED", "Family and clipping still require screenshot review")
-        copy.tap()
+        if !tapNamed(["Done", "완료"]) { XCUIDevice.shared.press(.home) }
+        guard let widget = visibleWidget(medium: medium) else { try unavailable(surface, "Requested family not visible on home pages"); return }
+        Thread.sleep(forTimeInterval: 3); shot(surface + "-home")
+        let copy = widget.descendants(matching: .any).matching(NSPredicate(format: "label CONTAINS %@", message)).firstMatch
+        result(surface, copy.exists ? "WIDGET_CONTENT_OBSERVED" : "WIDGET_FRAME_OBSERVED_TEXT_UNVERIFIED", "Visible OS widget; family selected in gallery, screenshot review required")
+        widget.tap()
         guard app.wait(for: .runningForeground, timeout: 10) else { try unavailable(surface, "Widget destination not foreground"); return }
         let status = app.staticTexts["probe.status"]
         XCTAssertTrue(status.label.contains("fixture:synthetic-portrait"), "Destination must preserve fixture content ID")
         result(surface + "-OPEN", "DESTINATION_OBSERVED", status.label)
+    }
+
+    func visibleWidget(medium: Bool) -> XCUIElement? {
+        for _ in 0..<4 {
+            let icons = board.icons.matching(identifier: "냠모아 v25 검증").allElementsBoundByIndex
+            for icon in icons {
+                let value = icon.value as? String ?? ""
+                let wide = icon.frame.width > board.frame.width * 0.65
+                if value.hasPrefix("Widget") && icon.isHittable && wide == medium { return icon }
+            }
+            board.swipeLeft(); Thread.sleep(forTimeInterval: 1)
+        }
+        return nil
     }
 
     func test03SmallHomeHost() throws { try addWidget("H-S", medium: false) }
