@@ -1,0 +1,38 @@
+# PREPARED / NOT_RUN. 검토 후 별도 공개 검증 저장소에서만 활성화한다.
+# 업로드 전 원문 미디어/브랜드 자산·프로젝트 문서를 제외할 범위를 확인한다.
+name: Free iOS simulator preflight
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ios-probe-preflight
+  cancel-in-progress: true
+jobs:
+  preflight:
+    # private 저장소에서는 러너를 배정하기 전에 이 job을 건너뛴다.
+    if: ${{ github.event.repository.private == false }}
+    runs-on: macos-15
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Record installed Xcode and Simulator inventory
+        run: |
+          sw_vers
+          xcodebuild -version
+          xcrun simctl list runtimes --json
+          xcrun simctl list devicetypes --json
+      - name: Build three simulator targets without signing credentials
+        run: |
+          xcodebuild -project ios/MoaVisualProbe.xcodeproj -scheme MoaVisualProbe -sdk iphonesimulator -configuration Debug -derivedDataPath "$RUNNER_TEMP/nyammoa-v25" CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO build
+      # artifact/cache/Packages/Pages/TestFlight/원격 데스크톱을 사용하지 않는다.
+      # 위젯·알림 실제 관찰/기종 매트릭스는 다음 단계이며 빌드 성공으로 PASS 처리하지 않는다.
+      - name: Launch exact researched iPhone profiles on an installed runtime
+        run: |
+          RUNTIME=$(xcrun simctl list runtimes --json | python3 -c 'import json,sys; r=[x for x in json.load(sys.stdin)["runtimes"] if x.get("isAvailable") and "iOS" in x["identifier"]]; print(r[-1]["identifier"] if r else "")')
+          test -n "$RUNTIME"
+          python3 ios/run-model-matrix.py --app "$RUNNER_TEMP/nyammoa-v25/Build/Products/Debug-iphonesimulator/MoaVisualProbe.app" --runtime "$RUNTIME" --output "$RUNNER_TEMP/model-results"
+          cat "$RUNNER_TEMP/model-results/matrix-results.json"
+          echo 'Widget/notification host acceptance: NOT_TESTED' >> "$GITHUB_STEP_SUMMARY"

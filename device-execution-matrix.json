@@ -1,0 +1,102 @@
+{
+  "devices": [
+    {
+      "id": "I01",
+      "platform": "iOS",
+      "model": "iPhone SE (2nd generation)",
+      "year": 2020,
+      "priority": "OLDER_REGRESSION"
+    },
+    {
+      "id": "I02",
+      "platform": "iOS",
+      "model": "iPhone 12 mini",
+      "year": 2020,
+      "priority": "OLDER_REGRESSION"
+    },
+    {
+      "id": "I03",
+      "platform": "iOS",
+      "model": "iPhone 13 mini",
+      "year": 2021,
+      "priority": "OLDER_REGRESSION"
+    },
+    {
+      "id": "I04",
+      "platform": "iOS",
+      "model": "iPhone 13 Pro Max",
+      "year": 2021,
+      "priority": "OLDER_REGRESSION"
+    },
+    {
+      "id": "I05",
+      "platform": "iOS",
+      "model": "iPhone SE (3rd generation)",
+      "year": 2022,
+      "priority": "RECENT_FIVE_YEARS"
+    },
+    {
+      "id": "I06",
+      "platform": "iOS",
+      "model": "iPhone 14 Pro",
+      "year": 2022,
+      "priority": "RECENT_FIVE_YEARS"
+    },
+    {
+      "id": "I07",
+      "platform": "iOS",
+      "model": "iPhone 15",
+      "year": 2023,
+      "priority": "RECENT_FIVE_YEARS"
+    },
+    {
+      "id": "I08",
+      "platform": "iOS",
+      "model": "iPhone 15 Pro Max",
+      "year": 2023,
+      "priority": "RECENT_FIVE_YEARS"
+    },
+    {
+      "id": "I09",
+      "platform": "iOS",
+      "model": "iPhone 16",
+      "year": 2024,
+      "priority": "RECENT_FIVE_YEARS"
+    },
+    {
+      "id": "I10",
+      "platform": "iOS",
+      "model": "iPhone 16 Pro Max",
+      "year": 2024,
+      "priority": "RECENT_FIVE_YEARS"
+    },
+    {
+      "id": "I11",
+      "platform": "iOS",
+      "model": "iPhone 17",
+      "year": 2025,
+      "priority": "RECENT_FIVE_YEARS"
+    },
+    {
+      "id": "I12",
+      "platform": "iOS",
+      "model": "iPhone 17 Pro Max",
+      "year": 2025,
+      "priority": "RECENT_FIVE_YEARS"
+    },
+    {
+      "id": "I13",
+      "platform": "iOS",
+      "model": "iPhone 18 Pro",
+      "year": 2026,
+      "priority": "RECENT_FIVE_YEARS"
+    },
+    {
+      "id": "I14",
+      "platform": "iOS",
+      "model": "iPhone 18 Pro Max",
+      "year": 2026,
+      "priority": "RECENT_FIVE_YEARS"
+    }
+  ]
+}
