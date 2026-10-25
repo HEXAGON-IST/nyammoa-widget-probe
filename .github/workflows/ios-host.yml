@@ -1,6 +1,14 @@
 name: Free iOS OS-host observation
 on:
   workflow_dispatch:
+    inputs:
+      signing:
+        description: Simulator signing experiment (no Apple account)
+        type: choice
+        default: unsigned
+        options:
+          - unsigned
+          - adhoc-local
 permissions:
   contents: read
 concurrency:
@@ -16,4 +24,6 @@ jobs:
         with:
           persist-credentials: false
       - name: Run actual OS-host tests and emit temporary screenshots in logs
+        env:
+          PROBE_SIGNING: ${{ inputs.signing }}
         run: python3 ios/run-host.py
