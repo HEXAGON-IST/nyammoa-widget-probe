@@ -1,7 +1,13 @@
 {
-  "status": "REVISION_SDK_MATCHED_RUNTIME",
-  "repository": "HEXAGON-IST/nyammoa-widget-probe",
+  "scope": "SYNTHETIC_PUBLIC_PROBE_ONLY",
+  "originalMediaIncluded": false,
+  "originalBrandArtIncluded": false,
   "files": [
+    {
+      "path": ".github/workflows/ios-matrix.yml",
+      "sha256": "93d5c9c634ccdd2cb20d2483de1f5a7cd115fd56499004617db7edf0c7be0817",
+      "bytes": 2800
+    },
     {
       "path": ".github/workflows/ios-preflight.yml",
       "sha256": "3d998c641ffca24c8a6af7bb2777a280312392f0422138586b392fe483988fec",
@@ -51,6 +57,11 @@
       "path": "ios/run-model-matrix.py",
       "sha256": "e54313e7e8379ce2cd938fc000db85e904309c5a0f461055fc0f42ea8b171290",
       "bytes": 3418
+    },
+    {
+      "path": "ios/run-profile.py",
+      "sha256": "8b968c7e455b39aa334a2738ef5683f659874914278e7832908a4ae0df08d09e",
+      "bytes": 3268
     },
     {
       "path": "ios/Shared/Assets.xcassets/AppIcon.appiconset/Contents.json",
@@ -217,8 +228,5 @@
       "sha256": "a3037d720f21334a26b7e605f8d37ba013e89e675e4ebd557537c9e1dbb5d967",
       "bytes": 873
     }
-  ],
-  "originalMediaIncluded": false,
-  "originalBrandArtIncluded": false,
-  "nativeAcceptance": "NOT_TESTED"
+  ]
 }

@@ -1,0 +1,68 @@
+name: Free iOS profile matrix
+on:
+  workflow_dispatch:
+    inputs:
+      profiles:
+        description: ALL or comma separated research IDs
+        required: true
+        default: ALL
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: ios-profile-matrix
+  cancel-in-progress: true
+jobs:
+  plan:
+    if: ${{ github.event.repository.private == false }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    outputs:
+      profiles: ${{ steps.plan.outputs.profiles }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - id: plan
+        env:
+          REQUESTED: ${{ inputs.profiles }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          rows=json.load(open('device-execution-matrix.json'))['devices']
+          allowed=[r['id'] for r in rows if r['platform']=='iOS']
+          requested=os.environ['REQUESTED']
+          selected=allowed if requested=='ALL' else requested.split(',')
+          assert selected and len(set(selected))==len(selected)
+          assert all(p in allowed for p in selected), 'Unknown research profile'
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('profiles='+json.dumps(selected)+'\n')
+          print(json.dumps({'requestedProfiles':selected,'hostAcceptance':'NOT_TESTED'}))
+          PY
+  profile:
+    needs: plan
+    if: ${{ github.event.repository.private == false }}
+    name: iOS-${{ matrix.profile }}
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        profile: ${{ fromJSON(needs.plan.outputs.profiles) }}
+    runs-on: macos-15
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Build unsigned simulator targets
+        run: |
+          xcodebuild -version
+          xcodebuild -quiet -project ios/MoaVisualProbe.xcodeproj -scheme MoaVisualProbe -sdk iphonesimulator -configuration Debug -derivedDataPath "$RUNNER_TEMP/probe" CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO build
+      - name: Observe exact profile and emit synthetic screenshots into logs
+        env:
+          PROFILE: ${{ matrix.profile }}
+        run: |
+          SDK_VERSION=$(xcrun --sdk iphonesimulator --show-sdk-version)
+          RUNTIME=$(xcrun simctl list runtimes --json | python3 -c 'import json,sys; r=[r for r in json.load(sys.stdin)["runtimes"] if r.get("isAvailable") and "iOS" in r["identifier"] and r["version"]==sys.argv[1]]; print(r[0]["identifier"] if r else "")' "$SDK_VERSION")
+          test -n "$RUNTIME"
+          python3 ios/run-profile.py --app "$RUNNER_TEMP/probe/Build/Products/Debug-iphonesimulator/MoaVisualProbe.app" --runtime "$RUNTIME" --only "$PROFILE" --output "$RUNNER_TEMP/profile-results" --emit-screenshots
