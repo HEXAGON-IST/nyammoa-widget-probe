@@ -14,12 +14,19 @@ All 14 iPhone profiles have at least one observed app launch (iOS18.5 or27.0).
 This is not a claim that four host surfaces passed on all profiles.
 The iPhone16/iOS18.5 host run observed notification extension content;
 home widgets still displayed grey placeholders. A medium-widget destination
-preserved synthetic content/copy IDs, while small-widget opening was unverified.
+preserved synthetic content/copy IDs. A later run observed image-area links
+for both small and medium widgets, but both still displayed placeholders.
 Subsequent navigation failures remain in the run history. CI success can include
 skipped host checks and must not be interpreted as visual acceptance.
 
 App matrix: https://github.com/HEXAGON-IST/nyammoa-widget-probe/actions/runs/40200935808
-Host evidence: https://github.com/HEXAGON-IST/nyammoa-widget-probe/actions/runs/40201972827
+Latest host: https://github.com/HEXAGON-IST/nyammoa-widget-probe/actions/runs/40207353650
+Earlier extension display: https://github.com/HEXAGON-IST/nyammoa-widget-probe/actions/runs/40201972827
+Generated metadata: https://github.com/HEXAGON-IST/nyammoa-widget-probe/actions/runs/40208766055
+App and widget targets both emit ProbeConfiguration/ReactIntent metadata.
+Runtime metadata lookup/helper communication failures remain unresolved.
+The latest notification extension navigation was skipped; earlier display
+observation is not stable animation acceptance or a latest-run pass.
 PNG attachments are emitted to public run logs as synthetic-image base64 chunks.
 There are no original media/brand images in these logs. This is a public fixture
 test harness, not a way to privately transfer production screenshots.
@@ -30,3 +37,4 @@ Then `gh run list --repo HEXAGON-IST/nyammoa-widget-probe`.
 `ios-matrix.yml` accepts comma-separated profile IDs and a runner allowlist.
 `ios-inventory.yml` reports the xcode-27 image's actual SDK/runtime support.
 `ios-host.yml` uses XCUITest to navigate actual SpringBoard/notification hosts.
+`ios-metadata.yml` builds and emits fixture AppIntent metadata without UI tests.
