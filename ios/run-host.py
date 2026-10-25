@@ -16,6 +16,9 @@ def image(path):
 
 folder=Path(tempfile.mkdtemp(prefix='nyammoa-host-',dir=os.environ['RUNNER_TEMP']))
 signing=os.environ.get('PROBE_SIGNING','adhoc-local')
+tests=os.environ.get('PROBE_TESTS','all')
+assert tests in ('all','notifications'), 'Unknown host test scope'
+test_flags=['-only-testing:ProbeHostTests/ProbeHostTests/test02NotificationHosts'] if tests=='notifications' else []
 assert signing in ('unsigned','adhoc-local'), 'Unknown simulator signing mode'
 signing_flags=(['CODE_SIGNING_ALLOWED=NO','CODE_SIGNING_REQUIRED=NO'] if signing=='unsigned' else
     ['CODE_SIGNING_ALLOWED=YES','CODE_SIGNING_REQUIRED=YES','CODE_SIGN_IDENTITY=-',
@@ -31,7 +34,7 @@ try:
     command=['xcodebuild','-project','ios/MoaVisualProbe.xcodeproj','-scheme','MoaHostChecks',
         '-configuration','Debug','-sdk','iphonesimulator','-destination','platform=iOS Simulator,id='+device,
         '-derivedDataPath',str(folder/'build'),'-resultBundlePath',str(result_bundle),
-        '-parallel-testing-enabled','NO',*signing_flags,'test']
+        '-parallel-testing-enabled','NO',*test_flags,*signing_flags,'test']
     with (folder/'test.log').open('w') as log:
         try:exit_code=subprocess.run(command,stdout=log,stderr=subprocess.STDOUT,timeout=780).returncode
         except subprocess.TimeoutExpired:print('HOST_TEST_TIMEOUT',flush=True)
@@ -57,6 +60,6 @@ finally:
             print('ATTACHMENT_EXPORT_UNVERIFIED '+str(error),flush=True)
     try:sim('shutdown',device)
     except (subprocess.CalledProcessError,subprocess.TimeoutExpired):print('OWNED_SIMULATOR_SHUTDOWN_FAILED',flush=True)
-    print('PROBE_HOST_RUN '+json.dumps({'model':'iPhone 16','runtime':runtime['identifier'],'testExitCode':exit_code,'signing':signing,
+    print('PROBE_HOST_RUN '+json.dumps({'model':'iPhone 16','runtime':runtime['identifier'],'testExitCode':exit_code,'signing':signing,'testScope':tests,
         'visualAcceptance':'REQUIRES_LOCAL_SCREENSHOT_REVIEW','originalMedia':'NOT_INCLUDED','artwork':'APPROVED_ICON_AND_MOA','mediaSlot':'SYNTHETIC_PLACEHOLDER_NOT_X_OR_YOUTUBE'}),flush=True)
 raise SystemExit(exit_code)

@@ -47,6 +47,19 @@ final class ProbeHostTests: XCTestCase {
         let text = board.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", message)).firstMatch
         guard text.waitForExistence(timeout: 10) else { try unavailable("N-C", "Notification content absent in OS host"); return }
         Thread.sleep(forTimeInterval: 2)
+        shot("notification-center-entry")
+        if !onScreen(text) {
+            let counts = board.descendants(matching: .any).matching(NSPredicate(format: "label MATCHES[c] %@", "[0-9]+ Notifications?|알림 [0-9]+개")).allElementsBoundByIndex
+            if let count = counts.first(where: { onScreen($0) }) {
+                count.tap(); Thread.sleep(forTimeInterval: 1)
+            }
+        }
+        if !onScreen(text) {
+            board.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.9))
+                .press(forDuration: 0.1, thenDragTo: board.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)))
+            Thread.sleep(forTimeInterval: 2)
+        }
+        guard onScreen(text) else { try unavailable("N-C", "Notification text exists but is offscreen or not hittable"); return }
         shot("notification-collapsed"); result("N-C", "CONTENT_OBSERVED", "OS notification center contains approved copy")
         let notificationRect = text.frame
         print("PROBE_NOTIFICATION_PRESS_RECT \(notificationRect)")
@@ -58,6 +71,12 @@ final class ProbeHostTests: XCTestCase {
         Thread.sleep(forTimeInterval: 3)
         characterFrame(pet, sample: "b"); shot("notification-expanded-b")
         result("N-E", "EXTENSION_OBSERVED", "Character accessibility element found; frame pair needs visual review")
+    }
+
+    func onScreen(_ element: XCUIElement) -> Bool {
+        guard element.exists && element.isHittable else { return false }
+        let rect = element.frame
+        return rect.width > 0 && rect.height > 0 && board.frame.contains(CGPoint(x: rect.midX, y: rect.midY))
     }
 
     func characterFrame(_ pet: XCUIElement, sample: String) {

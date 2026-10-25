@@ -2,6 +2,13 @@ name: Free iOS OS-host observation
 on:
   workflow_dispatch:
     inputs:
+      tests:
+        description: Limit follow-up to notification navigation
+        type: choice
+        default: all
+        options:
+          - all
+          - notifications
       signing:
         description: Simulator signing experiment (no Apple account)
         type: choice
@@ -25,5 +32,6 @@ jobs:
           persist-credentials: false
       - name: Run actual OS-host tests and emit temporary screenshots in logs
         env:
+          PROBE_TESTS: ${{ inputs.tests }}
           PROBE_SIGNING: ${{ inputs.signing }}
         run: python3 ios/run-host.py
