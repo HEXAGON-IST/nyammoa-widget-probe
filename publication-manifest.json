@@ -9,6 +9,11 @@
       "bytes": 487
     },
     {
+      "path": ".github/workflows/ios-inventory.yml",
+      "sha256": "5bf18aa46d2fe40b81d39531940397438867a23073688d329adb5e131f289299",
+      "bytes": 1089
+    },
+    {
       "path": ".github/workflows/ios-matrix.yml",
       "sha256": "92b6b17eda72f0db62546f6686d28f43c34f994620ea4dfd562c0d9809644ab0",
       "bytes": 3129
@@ -30,8 +35,8 @@
     },
     {
       "path": "ios/MoaVisualProbe.xcodeproj/project.pbxproj",
-      "sha256": "e4fa581a9bde4f9ca1a7b676b4c13c882c8a960a971e54cd3faec325176fb904",
-      "bytes": 20858
+      "sha256": "a1a1ed68ea0afa4710b363180978af22507e0c4fd4da8be4d021ec58dd863741",
+      "bytes": 21036
     },
     {
       "path": "ios/MoaVisualProbe.xcodeproj/xcshareddata/xcschemes/MoaHostChecks.xcscheme",
@@ -55,8 +60,8 @@
     },
     {
       "path": "ios/ProbeHostTests.swift",
-      "sha256": "a46511d2cb966db759176ed70c7813b0be0a32f6b6c82c483087889b80f8b008",
-      "bytes": 5605
+      "sha256": "87003e84bdc5c6936462164e1356b929233c463e871becea95062855c6c991d5",
+      "bytes": 5988
     },
     {
       "path": "ios/ProbeNotification.swift",

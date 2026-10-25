@@ -311,6 +311,7 @@
         "LD_RUNPATH_SEARCH_PATHS" = ("$(inherited)", "@executable_path/Frameworks", "@executable_path/../../Frameworks");
         "APPLICATION_EXTENSION_API_ONLY" = "YES";
         "SKIP_INSTALL" = "YES";
+        "OTHER_LDFLAGS" = ("$(inherited)", "-Wl,-needed_framework,UserNotificationsUI");
       };
       "name" = "Debug";
     };
@@ -331,6 +332,7 @@
         "LD_RUNPATH_SEARCH_PATHS" = ("$(inherited)", "@executable_path/Frameworks", "@executable_path/../../Frameworks");
         "APPLICATION_EXTENSION_API_ONLY" = "YES";
         "SKIP_INSTALL" = "YES";
+        "OTHER_LDFLAGS" = ("$(inherited)", "-Wl,-needed_framework,UserNotificationsUI");
       };
       "name" = "Release";
     };

@@ -58,7 +58,7 @@ final class ProbeHostTests: XCTestCase {
 
     func tapNamed(_ names: [String]) -> Bool {
         for name in names {
-            let button = board.buttons[name]
+            let button = board.buttons.matching(NSPredicate(format: "label == %@ OR label == %@", name, " " + name)).firstMatch
             if button.waitForExistence(timeout: 2) { button.tap(); return true }
             let text = board.staticTexts[name]
             if text.exists { text.tap(); return true }
@@ -79,6 +79,9 @@ final class ProbeHostTests: XCTestCase {
         search.tap(); search.typeText("냠모아")
         guard tapNamed(["냠모아 v25 검증"]) else { try unavailable(surface, "Widget provider not found in gallery"); return }
         if medium { board.swipeLeft(); Thread.sleep(forTimeInterval: 1) }
+        let family = medium ? "Widget, Medium" : "Widget, Small"
+        let selected = board.buttons.matching(NSPredicate(format: "value == %@", family)).firstMatch
+        guard selected.waitForExistence(timeout: 5) else { try unavailable(surface, "Requested widget family not selected"); return }
         shot(surface + "-gallery")
         guard tapNamed(["Add Widget", "위젯 추가"]) else { try unavailable(surface, "Gallery add control unavailable"); return }
         _ = tapNamed(["Done", "완료"]); XCUIDevice.shared.press(.home)

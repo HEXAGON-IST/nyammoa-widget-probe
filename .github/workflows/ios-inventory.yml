@@ -1,0 +1,24 @@
+name: Free Xcode27 inventory diagnostics
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inventory:
+    if: ${{ github.event.repository.private == false }}
+    runs-on: xcode-27
+    timeout-minutes: 4
+    steps:
+      - name: Read installed SDK and exact researched profile identifiers
+        run: |
+          python3 - <<'PY'
+          import json, subprocess
+          def call(*parts):return subprocess.check_output(parts,text=True,timeout=60).strip()
+          sdk=call('xcrun','--sdk','iphonesimulator','--show-sdk-version')
+          print(call('xcodebuild','-version'))
+          types=json.loads(call('xcrun','simctl','list','devicetypes','--json'))['devicetypes']
+          wanted=['iPhone 17','iPhone 17 Pro Max','iPhone 18 Pro','iPhone 18 Pro Max']
+          runtime=json.loads(call('xcrun','simctl','list','runtimes','--json'))['runtimes']
+          print('PROBE_INVENTORY '+json.dumps({'sdk':sdk,'types':[t for t in types if t['name'] in wanted],
+            'runtimes':[r for r in runtime if r.get('isAvailable') and 'iOS' in r['identifier']]}))
+          PY
