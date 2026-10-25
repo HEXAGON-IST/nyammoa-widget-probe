@@ -41,7 +41,7 @@ final class ProbeHostTests: XCTestCase {
                 alert.buttons["Allow"].tap(); break
             }
         }
-        XCUIDevice.shared.press(.home); Thread.sleep(forTimeInterval: 4)
+        XCUIDevice.shared.press(.home); Thread.sleep(forTimeInterval: 12)
         board.coordinate(withNormalizedOffset: CGVector(dx: 0.25, dy: 0.01))
             .press(forDuration: 0.1, thenDragTo: board.coordinate(withNormalizedOffset: CGVector(dx: 0.25, dy: 0.8)))
         let text = board.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", message)).firstMatch
@@ -87,7 +87,12 @@ final class ProbeHostTests: XCTestCase {
         guard tapNamed(["Add Widget", "Add Widgets", "위젯 추가", "Add"]) else { try unavailable(surface, "Widget gallery entry unavailable"); return }
         let search = board.searchFields["Search Widgets"]
         guard search.waitForExistence(timeout: 8) else { try unavailable(surface, "Widget gallery search unavailable"); return }
-        search.tap(); search.typeText("냠모아")
+        search.tap()
+        if board.buttons["Continue"].waitForExistence(timeout: 2) { board.buttons["Continue"].tap() }
+        search.typeText("냠모아")
+        if board.buttons["Continue"].exists { board.buttons["Continue"].tap() }
+        let provider = board.buttons["냠모아 v25 검증"]
+        _ = provider.waitForExistence(timeout: 20)
         guard tapNamed(["냠모아 v25 검증"]) else { try unavailable(surface, "Widget provider not found in gallery"); return }
         if medium { board.swipeLeft(); Thread.sleep(forTimeInterval: 1) }
         let family = medium ? "Widget, Medium" : "Widget, Small"
