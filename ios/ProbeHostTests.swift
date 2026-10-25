@@ -110,7 +110,7 @@ final class ProbeHostTests: XCTestCase {
         let search = board.searchFields["Search Widgets"]
         guard search.waitForExistence(timeout: 8) else { try unavailable(surface, "Widget gallery search unavailable"); return }
         search.tap()
-        if board.buttons["Continue"].waitForExistence(timeout: 2) { board.buttons["Continue"].tap() }
+        if board.buttons["Continue"].waitForExistence(timeout: 2) { board.buttons["Continue"].tap(); search.tap() }
         search.typeText("냠모아")
         if board.buttons["Continue"].exists { board.buttons["Continue"].tap() }
         let provider = board.buttons["냠모아 v25 검증"]

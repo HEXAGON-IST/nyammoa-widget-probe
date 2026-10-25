@@ -9,6 +9,7 @@ on:
         options:
           - all
           - notifications
+          - small
       signing:
         description: Simulator signing experiment (no Apple account)
         type: choice
