@@ -33,7 +33,7 @@ try:
 finally:
     try:
         print('PROBE_EXTENSION_LOG '+sim('spawn',device,'log','show','--last','8m','--style','compact',
-            '--predicate','process == "MoaNotification" OR eventMessage CONTAINS "com.nyammoa.visualprobe.notification"',timeout=60),flush=True)
+            '--predicate','process == "MoaNotification" OR process == "MoaWidget" OR eventMessage CONTAINS "com.nyammoa.visualprobe"',timeout=60),flush=True)
     except (subprocess.CalledProcessError,subprocess.TimeoutExpired):print('EXTENSION_LOG_UNAVAILABLE',flush=True)
     if result_bundle.exists():
         exports=folder/'attachments'

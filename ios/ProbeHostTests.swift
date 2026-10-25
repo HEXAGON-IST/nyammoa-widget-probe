@@ -47,13 +47,24 @@ final class ProbeHostTests: XCTestCase {
         let text = board.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", message)).firstMatch
         guard text.waitForExistence(timeout: 10) else { try unavailable("N-C", "Notification content absent in OS host"); return }
         shot("notification-collapsed"); result("N-C", "CONTENT_OBSERVED", "OS notification center contains fixture text")
-        text.press(forDuration: 1.2); Thread.sleep(forTimeInterval: 1)
-        shot("notification-expanded-a")
+        text.press(forDuration: 1.2)
         let pet = board.images["probe.notification.pet"]
         guard pet.waitForExistence(timeout: 8) else { try unavailable("N-E", "Custom extension character not identified"); return }
-        print("PROBE_RECT " + pet.frame.debugDescription)
-        Thread.sleep(forTimeInterval: 3); shot("notification-expanded-b")
+        Thread.sleep(forTimeInterval: 3)
+        characterFrame(pet, sample: "a"); shot("notification-expanded-a")
+        Thread.sleep(forTimeInterval: 3)
+        characterFrame(pet, sample: "b"); shot("notification-expanded-b")
         result("N-E", "EXTENSION_OBSERVED", "Character accessibility element found; frame pair needs visual review")
+    }
+
+    func characterFrame(_ pet: XCUIElement, sample: String) {
+        let rect = pet.frame
+        let data = try! JSONSerialization.data(withJSONObject: [
+            "sample": sample, "x": rect.minX, "y": rect.minY,
+            "width": rect.width, "height": rect.height,
+            "screenWidth": board.frame.width, "screenHeight": board.frame.height
+        ])
+        print("PROBE_CHARACTER_FRAME " + String(decoding: data, as: UTF8.self))
     }
 
     func tapNamed(_ names: [String]) -> Bool {
@@ -86,8 +97,9 @@ final class ProbeHostTests: XCTestCase {
         guard tapNamed(["Add Widget", "위젯 추가"]) else { try unavailable(surface, "Gallery add control unavailable"); return }
         if !tapNamed(["Done", "완료"]) { XCUIDevice.shared.press(.home) }
         guard let widget = visibleWidget(medium: medium) else { try unavailable(surface, "Requested family not visible on home pages"); return }
-        Thread.sleep(forTimeInterval: 3); shot(surface + "-home")
         let copy = widget.descendants(matching: .any).matching(NSPredicate(format: "label CONTAINS %@", message)).firstMatch
+        _ = copy.waitForExistence(timeout: 20)
+        shot(surface + "-home")
         result(surface, copy.exists ? "WIDGET_CONTENT_OBSERVED" : "WIDGET_FRAME_OBSERVED_TEXT_UNVERIFIED", "Visible OS widget; family selected in gallery, screenshot review required")
         widget.tap()
         guard app.wait(for: .runningForeground, timeout: 10) else { try unavailable(surface, "Widget destination not foreground"); return }

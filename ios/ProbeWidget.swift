@@ -27,9 +27,13 @@ struct ProbeEntry: TimelineEntry {
 }
 struct ProbeProvider: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> ProbeEntry { ProbeEntry(date: .now, character: 1, reaction: false) }
-    func snapshot(for configuration: ProbeConfiguration, in context: Context) async -> ProbeEntry { entry(configuration) }
+    func snapshot(for configuration: ProbeConfiguration, in context: Context) async -> ProbeEntry {
+        NSLog("PROBE_WIDGET snapshot requested")
+        return entry(configuration)
+    }
     func timeline(for configuration: ProbeConfiguration, in context: Context) async -> Timeline<ProbeEntry> {
-        Timeline(entries: [entry(configuration)], policy: .never)
+        NSLog("PROBE_WIDGET timeline requested")
+        return Timeline(entries: [entry(configuration)], policy: .never)
     }
     private func entry(_ configuration: ProbeConfiguration) -> ProbeEntry {
         ProbeEntry(date: .now, character: configuration.character.rawValue, reaction: UserDefaults.standard.bool(forKey: "reaction"))

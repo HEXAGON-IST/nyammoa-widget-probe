@@ -60,8 +60,8 @@
     },
     {
       "path": "ios/ProbeHostTests.swift",
-      "sha256": "0358fb5f9a03d23bbe4cb330d29c160ef898fa4b7011a11a741a6da2f4ccd779",
-      "bytes": 6812
+      "sha256": "d9e223563f2399e25197cd2406e6cf309b00125fdda645d9b43fccaa417cfb0e",
+      "bytes": 7302
     },
     {
       "path": "ios/ProbeNotification.swift",
@@ -70,13 +70,13 @@
     },
     {
       "path": "ios/ProbeWidget.swift",
-      "sha256": "74bbd782c72be0c391d8e644593ee75bb1a04e89201fdd903ea952b03f62b0c6",
-      "bytes": 3527
+      "sha256": "ed98cb6868c1f4d5d5d7613b2295fa44ee15cfe264f04f7614024b828ceb2609",
+      "bytes": 3651
     },
     {
       "path": "ios/run-host.py",
-      "sha256": "79d62f3a8ba665fbf864e5d0f08f5eec49469d89ac71cd35764a1b3007ea6a3b",
-      "bytes": 3414
+      "sha256": "ff62fefec9fbb43075d55fde4c361a3914c4d01ecc083555f653b951b8834f34",
+      "bytes": 3427
     },
     {
       "path": "ios/run-model-matrix.py",
