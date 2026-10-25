@@ -62,6 +62,11 @@ jobs:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
+      - name: Select installed general iPhone SDK instead of Duo-only default runtime
+        if: ${{ inputs.runner == 'xcode-27' }}
+        run: |
+          test -d /Applications/Xcode_27.0.app/Contents/Developer
+          echo 'DEVELOPER_DIR=/Applications/Xcode_27.0.app/Contents/Developer' >> "$GITHUB_ENV"
       - name: Build unsigned simulator targets
         run: |
           xcodebuild -version
