@@ -37,3 +37,17 @@ Earlier signed geometric-content observation: https://github.com/HEXAGON-IST/nya
 
 Other manual workflows are retained as historical harnesses. Do not infer their
 default signing mode or all-model host acceptance from this single-host run.
+
+Sage home revision (2026-10-26): home background uses the approved icon's
+RGB(220,231,206), #DCE7CE. Native framing excludes transparent padding without
+editing the original PNGs. Small home uses 72pt, medium uses 88pt; notification
+source/layout/background remains unchanged.
+
+Run 40218804171 observed the medium home and destination, but failed the small
+test due to keyboard focus. Refocusing Search Widgets repaired that harness
+issue. Run 40219967727 passed automatically but visual inspection found small
+home copy truncated. Small-only run 40220928347, tested commit
+7850f83a20ef51ff89a9e11baf61fde1a53c81c0, passed in 10m18s. Direct screenshot
+inspection showed the full Korean copy with no ellipsis and a larger Moa.
+This is one iPhone 16/iOS18.5 observation, not all-device or motion acceptance.
+Use `-f tests=small` for the small-only scope. Geometric media remains a fixture.
