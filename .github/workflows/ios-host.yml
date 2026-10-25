@@ -1,0 +1,19 @@
+name: Free iOS OS-host observation
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ios-host-observation
+  cancel-in-progress: true
+jobs:
+  host:
+    if: ${{ github.event.repository.private == false }}
+    runs-on: macos-15
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Run actual OS-host tests and emit temporary screenshots in logs
+        run: python3 ios/run-host.py

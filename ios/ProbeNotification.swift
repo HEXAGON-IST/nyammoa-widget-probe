@@ -12,6 +12,8 @@ final class ProbeNotification: UIViewController, UNNotificationContentExtension 
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 1, green: 0.988, blue: 0.961, alpha: 1)
         pet.contentMode = .scaleAspectFit; pet.widthAnchor.constraint(equalToConstant: 48).isActive = true
+        pet.isAccessibilityElement = true; pet.accessibilityIdentifier = "probe.notification.pet"
+        pet.accessibilityLabel = "Probe character"
         pet.heightAnchor.constraint(equalToConstant: 48).isActive = true
         copy.text = ProbeData.copy; copy.numberOfLines = 0; copy.font = .systemFont(ofSize: 12)
         let heading = UIStackView(arrangedSubviews: [pet, copy]); heading.spacing = 8; heading.alignment = .center

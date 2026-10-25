@@ -32,8 +32,8 @@ struct ProbeScreen: View {
                 Picker("펼친 알림 캐릭터", selection: $character) {
                     ForEach(1...4, id: \.self) { Text("캐릭터 \($0)").tag($0) }
                 }
-                Button("로컬 알림 표시") { Task { await notify() } }
-                Text(status).font(.caption)
+                Button("로컬 알림 표시") { Task { await notify() } }.accessibilityIdentifier("probe.notify")
+                Text(status).font(.caption).accessibilityIdentifier("probe.status")
                 Text(ProbeData.copy)
                 Image("post").resizable().scaledToFit()
             }.padding()

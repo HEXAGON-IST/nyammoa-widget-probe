@@ -4,29 +4,39 @@
   "originalBrandArtIncluded": false,
   "files": [
     {
+      "path": ".github/workflows/ios-host.yml",
+      "sha256": "388b5dcaf4cdf620254f509fc575ba7a62a7c16e42b0309a93759a0d2beed88a",
+      "bytes": 487
+    },
+    {
       "path": ".github/workflows/ios-matrix.yml",
       "sha256": "93d5c9c634ccdd2cb20d2483de1f5a7cd115fd56499004617db7edf0c7be0817",
       "bytes": 2800
     },
     {
       "path": ".github/workflows/ios-preflight.yml",
-      "sha256": "3d998c641ffca24c8a6af7bb2777a280312392f0422138586b392fe483988fec",
-      "bytes": 2486
+      "sha256": "6306fd3367544e346a8d55e2208adcd5badc9815c08411ff0c46ceeff7426b9f",
+      "bytes": 2439
     },
     {
       "path": "device-execution-matrix.json",
-      "sha256": "08b6467cb5e8ea658ce4791f69f237026d35cd922b6550815668060d88b4db5c",
-      "bytes": 2214
+      "sha256": "acdcd80b148b342051ecfe2a8d05b821ae268cdecdacf2c0456d53eaa6320919",
+      "bytes": 2112
     },
     {
       "path": "ios/AppInfo.plist",
-      "sha256": "81fa45f5a2303ae2da9bf2247c04fed2872143e4302ec43af98b0c8822057350",
-      "bytes": 979
+      "sha256": "ce78b88d1485892d0a91ce9cfead03ee57b5b8c227183fab07000282848a9997",
+      "bytes": 944
     },
     {
       "path": "ios/MoaVisualProbe.xcodeproj/project.pbxproj",
-      "sha256": "05bf1cbe46a385b970f21574fb4c4cbf407d9f688aab6c73c0298cf329662ae4",
-      "bytes": 17407
+      "sha256": "e4fa581a9bde4f9ca1a7b676b4c13c882c8a960a971e54cd3faec325176fb904",
+      "bytes": 20858
+    },
+    {
+      "path": "ios/MoaVisualProbe.xcodeproj/xcshareddata/xcschemes/MoaHostChecks.xcscheme",
+      "sha256": "2fe7eb52a2f02d1423cfa619de4f3687f146ce975dfcad8f903a0a921263d03c",
+      "bytes": 1764
     },
     {
       "path": "ios/MoaVisualProbe.xcodeproj/xcshareddata/xcschemes/MoaVisualProbe.xcscheme",
@@ -40,23 +50,33 @@
     },
     {
       "path": "ios/ProbeApp.swift",
-      "sha256": "68e0afd49707a1707fcff2932772e263269109ce97b1bc72a204a10f2014672d",
-      "bytes": 3652
+      "sha256": "dfad5123951f601723292acf204e597ffe04044ce09e73c16721950dbb51dc9a",
+      "bytes": 3671
+    },
+    {
+      "path": "ios/ProbeHostTests.swift",
+      "sha256": "d5fa5c4a75e02ea5b26206167994aa7379fbf945f5e0a1016d47961f1d9cc3d3",
+      "bytes": 5598
     },
     {
       "path": "ios/ProbeNotification.swift",
-      "sha256": "00fe506845dc60426b45d15bb4bbc7370f2e1f7cc596e11cde84f466698cc247",
-      "bytes": 2685
+      "sha256": "3f128ece059dba52839162c4e5a532ecb6e72dce77463ae2e0f4ce1ca40748ae",
+      "bytes": 2796
     },
     {
       "path": "ios/ProbeWidget.swift",
-      "sha256": "5fc43bb58ec153fbc9bf2e52b9260c78df1b28e378d85ca5bc8fa2565918ae86",
-      "bytes": 3597
+      "sha256": "74bbd782c72be0c391d8e644593ee75bb1a04e89201fdd903ea952b03f62b0c6",
+      "bytes": 3527
+    },
+    {
+      "path": "ios/run-host.py",
+      "sha256": "6c952cc7e10b67e141f9848b9de97d558d163175ae7a573aff614b40c359ca94",
+      "bytes": 3041
     },
     {
       "path": "ios/run-model-matrix.py",
-      "sha256": "e54313e7e8379ce2cd938fc000db85e904309c5a0f461055fc0f42ea8b171290",
-      "bytes": 3418
+      "sha256": "7beeb986982fb867793fbbb61055d055bf2c94bb0ae4bdc01c6f7032c68792c3",
+      "bytes": 3375
     },
     {
       "path": "ios/run-profile.py",
@@ -175,8 +195,8 @@
     },
     {
       "path": "ios/Shared/ProbeData.swift",
-      "sha256": "d451988d82c8756d0bf66d474c5225b415010e1107f722f4b8fbc11463bae939",
-      "bytes": 437
+      "sha256": "322cb15fd1957c31c205b77db847eacf1c635465451549dabea5c4c28edf0480",
+      "bytes": 427
     },
     {
       "path": "ios/Shared/raster/pet_1_a.png",
@@ -225,8 +245,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "a3037d720f21334a26b7e605f8d37ba013e89e675e4ebd557537c9e1dbb5d967",
-      "bytes": 873
+      "sha256": "33aae837abb6efff994867f972edc674da6eb7b96ef1af133360acf14774127e",
+      "bytes": 858
     }
   ]
 }
