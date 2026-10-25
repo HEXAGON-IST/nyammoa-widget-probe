@@ -20,7 +20,15 @@ Subsequent navigation failures remain in the run history. CI success can include
 skipped host checks and must not be interpreted as visual acceptance.
 
 App matrix: https://github.com/HEXAGON-IST/nyammoa-widget-probe/actions/runs/40200935808
-Latest host: https://github.com/HEXAGON-IST/nyammoa-widget-probe/actions/runs/40207353650
+Unsigned baseline: https://github.com/HEXAGON-IST/nyammoa-widget-probe/actions/runs/40207353650
+Local-signing observation: https://github.com/HEXAGON-IST/nyammoa-widget-probe/actions/runs/40211183811
+The local ad-hoc Simulator signing run displayed synthetic content in both
+small and medium home widgets and preserved both destination IDs. Its app and
+test-runner signatures report adhoc and no TeamIdentifier. No Apple account,
+provisioning profile, paid runner, or SDK download was used.
+This is one iPhone16/iOS18.5 observation, not all-model visual acceptance.
+Small-widget wrapping needs review; notification expansion was skipped and
+character interaction/motion was not tested. Metadata9004 messages remain.
 Earlier extension display: https://github.com/HEXAGON-IST/nyammoa-widget-probe/actions/runs/40201972827
 Generated metadata: https://github.com/HEXAGON-IST/nyammoa-widget-probe/actions/runs/40208766055
 App and widget targets both emit ProbeConfiguration/ReactIntent metadata.
@@ -37,4 +45,8 @@ Then `gh run list --repo HEXAGON-IST/nyammoa-widget-probe`.
 `ios-matrix.yml` accepts comma-separated profile IDs and a runner allowlist.
 `ios-inventory.yml` reports the xcode-27 image's actual SDK/runtime support.
 `ios-host.yml` uses XCUITest to navigate actual SpringBoard/notification hosts.
+It accepts `signing=adhoc-local` for local Simulator signing; `unsigned` remains
+the default experimental baseline. Use `-f signing=adhoc-local` explicitly
+when reproducing the observed content path. The first local-signing attempt
+(40210812715) timed out listing runtimes before build, so it did not test signing.
 `ios-metadata.yml` builds and emits fixture AppIntent metadata without UI tests.
