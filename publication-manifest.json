@@ -1,11 +1,11 @@
 {
-  "status": "REVISION_PREPARED_AFTER_OBSERVED_INSTALL_FAILURE",
+  "status": "REVISION_SDK_MATCHED_RUNTIME",
   "repository": "HEXAGON-IST/nyammoa-widget-probe",
   "files": [
     {
       "path": ".github/workflows/ios-preflight.yml",
-      "sha256": "fa799148a7abfa5744c0c704e4c24f6686a9ae9b77fb106b09b41916713c733d",
-      "bytes": 2369
+      "sha256": "3d998c641ffca24c8a6af7bb2777a280312392f0422138586b392fe483988fec",
+      "bytes": 2486
     },
     {
       "path": "device-execution-matrix.json",
