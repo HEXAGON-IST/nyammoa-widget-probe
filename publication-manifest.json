@@ -19,6 +19,11 @@
       "bytes": 3439
     },
     {
+      "path": ".github/workflows/ios-metadata.yml",
+      "sha256": "5d4a86234ca8df3764ae9a3f1709b9f852e5a8aff17e1edbe48a0bcdf7d54511",
+      "bytes": 417
+    },
+    {
       "path": ".github/workflows/ios-preflight.yml",
       "sha256": "6306fd3367544e346a8d55e2208adcd5badc9815c08411ff0c46ceeff7426b9f",
       "bytes": 2439
@@ -32,6 +37,11 @@
       "path": "ios/AppInfo.plist",
       "sha256": "ce78b88d1485892d0a91ce9cfead03ee57b5b8c227183fab07000282848a9997",
       "bytes": 944
+    },
+    {
+      "path": "ios/inspect-metadata.py",
+      "sha256": "1142e99c299248beb63e086003b33b308d938aa554d533353302c90f6b526f5c",
+      "bytes": 1532
     },
     {
       "path": "ios/MoaVisualProbe.xcodeproj/project.pbxproj",

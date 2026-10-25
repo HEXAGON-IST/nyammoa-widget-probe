@@ -1,0 +1,16 @@
+name: Free iOS metadata inspection
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  metadata:
+    if: ${{ github.event.repository.private == false }}
+    runs-on: macos-15
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Build and inspect synthetic AppIntent metadata only
+        run: python3 ios/inspect-metadata.py
