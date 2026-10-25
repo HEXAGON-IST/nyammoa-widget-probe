@@ -1,12 +1,30 @@
 {
-  "scope": "SYNTHETIC_PUBLIC_PROBE_ONLY",
+  "scope": "USER_APPROVED_PUBLIC_ICON_AND_MOA_ONLY",
   "originalMediaIncluded": false,
-  "originalBrandArtIncluded": false,
+  "originalBrandArtIncluded": true,
+  "approvedBrandImages": {
+    "ios/Shared/Assets.xcassets/AppIcon.appiconset/icon.png": {
+      "sha256": "d0f77299c72659abab35a42f4b210fc19af4f648bf008cdee4562e09849dd90f",
+      "bytes": 39358,
+      "source": "docs/04_brand/native-probes/v25/ios/Shared/Assets.xcassets/AppIcon.appiconset/icon.png"
+    },
+    "ios/Shared/Assets.xcassets/pet_1_a.imageset/pet_1_a.png": {
+      "sha256": "515cff181850ca594faaa919be2d6e63e8ac9449828ca50cf67e99c2c656aee4",
+      "bytes": 23187,
+      "source": "docs/04_brand/native-probes/v25/ios/Shared/Assets.xcassets/pet_1_a.imageset/pet_1_a.png"
+    },
+    "ios/Shared/Assets.xcassets/pet_1_b.imageset/pet_1_b.png": {
+      "sha256": "2c272d6bb27a17b28390f2a1730b713e7ba45b817d96fc9592cf06a8c1993da9",
+      "bytes": 24332,
+      "source": "docs/04_brand/native-probes/v25/ios/Shared/Assets.xcassets/pet_1_b.imageset/pet_1_b.png"
+    }
+  },
+  "mediaSlot": "GEOMETRIC_PLACEHOLDER_NOT_ORIGINAL",
   "files": [
     {
       "path": ".github/workflows/ios-host.yml",
-      "sha256": "db26e17e62969160d6f6482f0ebf10ca46e9fdae3a109a09281cb2bc4d7f70aa",
-      "bytes": 752
+      "sha256": "9d4bc63e3aabb93e391cdb7aea8533fcb7f7bcddd8c0303385869ef2ddd5cac5",
+      "bytes": 755
     },
     {
       "path": ".github/workflows/ios-inventory.yml",
@@ -65,13 +83,13 @@
     },
     {
       "path": "ios/ProbeApp.swift",
-      "sha256": "dfad5123951f601723292acf204e597ffe04044ce09e73c16721950dbb51dc9a",
-      "bytes": 3671
+      "sha256": "6ca3113a084c5f2399c93ac71782fdd5d53aaf149b96c5b781d373279fd622da",
+      "bytes": 3780
     },
     {
       "path": "ios/ProbeHostTests.swift",
-      "sha256": "2d3407aafb38444957702ed9f45d647e9ff7387185abeccc0127f7c32848afe1",
-      "bytes": 7665
+      "sha256": "4ae8fdead03612fa0af71e4d819abd573c5b120ffb84c5d5f8b2dd80793d1562",
+      "bytes": 7913
     },
     {
       "path": "ios/ProbeIntents.swift",
@@ -90,8 +108,8 @@
     },
     {
       "path": "ios/run-host.py",
-      "sha256": "545eda5388a3a5d80b4123937cf69fc288f71faabf9098fe8e89f08e9793dd71",
-      "bytes": 4231
+      "sha256": "1f2263988a3e4c5eeac6e305c749f74bd0fad1596a71dbc814bc597c2759f634",
+      "bytes": 4321
     },
     {
       "path": "ios/run-model-matrix.py",
@@ -110,8 +128,8 @@
     },
     {
       "path": "ios/Shared/Assets.xcassets/AppIcon.appiconset/icon.png",
-      "sha256": "978b7f065adb48acb4daf56030319c17132a75bfa86410af7bb64ce38de6b023",
-      "bytes": 11951
+      "sha256": "d0f77299c72659abab35a42f4b210fc19af4f648bf008cdee4562e09849dd90f",
+      "bytes": 39358
     },
     {
       "path": "ios/Shared/Assets.xcassets/Contents.json",
@@ -125,8 +143,8 @@
     },
     {
       "path": "ios/Shared/Assets.xcassets/pet_1_a.imageset/pet_1_a.png",
-      "sha256": "7fe397a744799446ec42a39e28fd58f02b40031aad1583f435b6e6f670f58116",
-      "bytes": 587
+      "sha256": "515cff181850ca594faaa919be2d6e63e8ac9449828ca50cf67e99c2c656aee4",
+      "bytes": 23187
     },
     {
       "path": "ios/Shared/Assets.xcassets/pet_1_b.imageset/Contents.json",
@@ -135,8 +153,8 @@
     },
     {
       "path": "ios/Shared/Assets.xcassets/pet_1_b.imageset/pet_1_b.png",
-      "sha256": "6cb2aec2317231e3b60ee609130cad6a6c18ff781153ec55e22fa625812155a2",
-      "bytes": 580
+      "sha256": "2c272d6bb27a17b28390f2a1730b713e7ba45b817d96fc9592cf06a8c1993da9",
+      "bytes": 24332
     },
     {
       "path": "ios/Shared/Assets.xcassets/pet_2_a.imageset/Contents.json",
@@ -215,8 +233,8 @@
     },
     {
       "path": "ios/Shared/ProbeData.swift",
-      "sha256": "322cb15fd1957c31c205b77db847eacf1c635465451549dabea5c4c28edf0480",
-      "bytes": 427
+      "sha256": "b0e2b00d36a83ca91105ce69262ec66739a60cd1fc14a43980ad2730228d2cb8",
+      "bytes": 430
     },
     {
       "path": "ios/Shared/raster/pet_1_a.png",
@@ -265,8 +283,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "24c61b1103f1009a70a6de78df1c8cc8523c2cdf3303029c801c9f27ec86d28e",
-      "bytes": 3622
+      "sha256": "d0126647a6675a4a00b655d14462f155309ce91419bafed6af9be9cac33bf744",
+      "bytes": 1507
     }
   ]
 }

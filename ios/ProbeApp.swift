@@ -30,10 +30,11 @@ struct ProbeScreen: View {
                 Text("냠모아 v25 네이티브 검증").font(.title2)
                 Text("홈 위젯은 홈 화면 갤러리에서 추가하세요. 접힌 알림은 iOS 시스템 UI를 사용합니다.")
                 Picker("펼친 알림 캐릭터", selection: $character) {
-                    ForEach(1...4, id: \.self) { Text("캐릭터 \($0)").tag($0) }
+                    ForEach(1...1, id: \.self) { Text("캐릭터 \($0)").tag($0) }
                 }
                 Button("로컬 알림 표시") { Task { await notify() } }.accessibilityIdentifier("probe.notify")
                 Text(status).font(.caption).accessibilityIdentifier("probe.status")
+                Text("공개 검증: 확정 아이콘·모아 / X·YouTube 원본 미포함").font(.caption)
                 Text(ProbeData.copy)
                 Image("post").resizable().scaledToFit()
             }.padding()

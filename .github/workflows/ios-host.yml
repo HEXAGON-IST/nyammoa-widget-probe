@@ -5,7 +5,7 @@ on:
       signing:
         description: Simulator signing experiment (no Apple account)
         type: choice
-        default: unsigned
+        default: adhoc-local
         options:
           - unsigned
           - adhoc-local

@@ -4,7 +4,7 @@ import XCTest
 final class ProbeHostTests: XCTestCase {
     let app = XCUIApplication()
     let board = XCUIApplication(bundleIdentifier: "com.apple.springboard")
-    let message = "오늘 이 메뉴 만들어볼까?"
+    let message = "오늘 파스타에 양배추도 넣어볼까?"
 
     override func setUpWithError() throws {
         continueAfterFailure = false
@@ -30,7 +30,7 @@ final class ProbeHostTests: XCTestCase {
 
     func test01AppVisible() {
         XCTAssertTrue(app.buttons["probe.notify"].waitForExistence(timeout: 20))
-        shot("app-visible"); result("APP", "VISIBLE", "Synthetic fixture app, not widget host")
+        shot("app-visible"); result("APP", "VISIBLE", "Approved icon and Moa only; third-party media excluded; S2 probe app")
     }
 
     func test02NotificationHosts() throws {
@@ -46,8 +46,11 @@ final class ProbeHostTests: XCTestCase {
             .press(forDuration: 0.1, thenDragTo: board.coordinate(withNormalizedOffset: CGVector(dx: 0.25, dy: 0.8)))
         let text = board.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", message)).firstMatch
         guard text.waitForExistence(timeout: 10) else { try unavailable("N-C", "Notification content absent in OS host"); return }
-        shot("notification-collapsed"); result("N-C", "CONTENT_OBSERVED", "OS notification center contains fixture text")
-        text.press(forDuration: 1.2)
+        Thread.sleep(forTimeInterval: 2)
+        shot("notification-collapsed"); result("N-C", "CONTENT_OBSERVED", "OS notification center contains approved copy")
+        let notificationRect = text.frame
+        print("PROBE_NOTIFICATION_PRESS_RECT \(notificationRect)")
+        text.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).press(forDuration: 2)
         let pet = board.images["probe.notification.pet"]
         guard pet.waitForExistence(timeout: 8) else { try unavailable("N-E", "Custom extension character not identified"); return }
         Thread.sleep(forTimeInterval: 3)
@@ -109,7 +112,7 @@ final class ProbeHostTests: XCTestCase {
         widget.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.8)).tap()
         guard app.wait(for: .runningForeground, timeout: 10) else { try unavailable(surface, "Widget destination not foreground"); return }
         let status = app.staticTexts["probe.status"]
-        XCTAssertTrue(status.label.contains("fixture:synthetic-portrait"), "Destination must preserve fixture content ID")
+        XCTAssertTrue(status.label.contains("x:1261986084918947840"), "Destination must preserve approved content ID")
         result(surface + "-OPEN", "DESTINATION_OBSERVED", status.label)
     }
 
