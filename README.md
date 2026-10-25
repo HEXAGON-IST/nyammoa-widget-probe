@@ -17,7 +17,22 @@ SDK/runtime, 20-minute limit, and no artifact/cache upload. PNG captures in
 public logs may show the approved icon and Moa. No secret or account changes.
 
 Run: gh workflow run ios-host.yml --repo HEXAGON-IST/nyammoa-widget-probe -f signing=adhoc-local
-Current brand observation: NOT_RUN until the completed run and screenshots are reviewed.
+Approved-brand home observation: https://github.com/HEXAGON-IST/nyammoa-widget-probe/actions/runs/40214621861
+Its actual screenshots show the approved launcher icon and Moa in small and
+medium widgets. Both image-area links preserved the content/copy IDs. Its
+notification-content automatic result was an offscreen accessibility false
+positive: screenshots showed a notification count and wallpaper customization.
+The original logs/captures remain unchanged; visual review corrects that claim.
+
+Notification-only observation: https://github.com/HEXAGON-IST/nyammoa-widget-probe/actions/runs/40216279175
+After revealing the notification list and requiring hittable in-screen text,
+the collapsed card visibly showed the approved app icon and copy. Expansion
+still did not occur; the custom-character check was skipped. Motion was not
+tested. This follow-up did not rerun the home-widget tests. The preceding
+40215886985 attempt timed out listing runtimes before build/tests.
+
+Use `-f tests=notifications` for the notification-only scope; the default is all.
+Do not treat CI success with skipped checks as all-surface acceptance.
 Earlier signed geometric-content observation: https://github.com/HEXAGON-IST/nyammoa-widget-probe/actions/runs/40211183811
 
 Other manual workflows are retained as historical harnesses. Do not infer their
