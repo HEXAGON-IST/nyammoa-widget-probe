@@ -106,7 +106,7 @@ final class ProbeHostTests: XCTestCase {
         _ = copy.waitForExistence(timeout: 20)
         shot(surface + "-home")
         result(surface, copy.exists ? "WIDGET_CONTENT_OBSERVED" : "WIDGET_FRAME_OBSERVED_TEXT_UNVERIFIED", "Visible OS widget; family selected in gallery, screenshot review required")
-        widget.tap()
+        widget.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.8)).tap()
         guard app.wait(for: .runningForeground, timeout: 10) else { try unavailable(surface, "Widget destination not foreground"); return }
         let status = app.staticTexts["probe.status"]
         XCTAssertTrue(status.label.contains("fixture:synthetic-portrait"), "Destination must preserve fixture content ID")

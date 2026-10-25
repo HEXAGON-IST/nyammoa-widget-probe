@@ -35,8 +35,8 @@
     },
     {
       "path": "ios/MoaVisualProbe.xcodeproj/project.pbxproj",
-      "sha256": "a1a1ed68ea0afa4710b363180978af22507e0c4fd4da8be4d021ec58dd863741",
-      "bytes": 21036
+      "sha256": "315c577955a780acec7dbcbd0ee72e10cf2e5a790aaa0a540501c75594c21821",
+      "bytes": 21549
     },
     {
       "path": "ios/MoaVisualProbe.xcodeproj/xcshareddata/xcschemes/MoaHostChecks.xcscheme",
@@ -60,8 +60,13 @@
     },
     {
       "path": "ios/ProbeHostTests.swift",
-      "sha256": "acf1576740f9f7c9d731628125157c3617a2f2d1a539f69f0cf1531f3efaba9d",
-      "bytes": 7604
+      "sha256": "2d3407aafb38444957702ed9f45d647e9ff7387185abeccc0127f7c32848afe1",
+      "bytes": 7665
+    },
+    {
+      "path": "ios/ProbeIntents.swift",
+      "sha256": "9eade33de7739d4801f47dd2b2dcb49e8f0c878e60e541500c4b0f6b6adbfd7a",
+      "bytes": 947
     },
     {
       "path": "ios/ProbeNotification.swift",
@@ -70,8 +75,8 @@
     },
     {
       "path": "ios/ProbeWidget.swift",
-      "sha256": "ed98cb6868c1f4d5d5d7613b2295fa44ee15cfe264f04f7614024b828ceb2609",
-      "bytes": 3651
+      "sha256": "f18c449f8fb9970e0dc5ef6617070210a629172e76542fb057bbae6e8764e753",
+      "bytes": 2740
     },
     {
       "path": "ios/run-host.py",
@@ -250,8 +255,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "33aae837abb6efff994867f972edc674da6eb7b96ef1af133360acf14774127e",
-      "bytes": 858
+      "sha256": "04282d24b84b9c3d79d688f519c5873b229e2d3915d2696f15749c678b488cf4",
+      "bytes": 2042
     }
   ]
 }
