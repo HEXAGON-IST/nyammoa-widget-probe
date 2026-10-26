@@ -17,8 +17,9 @@ def image(path):
 folder=Path(tempfile.mkdtemp(prefix='nyammoa-host-',dir=os.environ['RUNNER_TEMP']))
 signing=os.environ.get('PROBE_SIGNING','adhoc-local')
 tests=os.environ.get('PROBE_TESTS','all')
-assert tests in ('all','notifications','small'), 'Unknown host test scope'
-test_flags=({'notifications':['-only-testing:ProbeHostTests/ProbeHostTests/test02NotificationHosts'],
+assert tests in ('all','notifications','small','interactions'), 'Unknown host test scope'
+test_flags=({'interactions':['-only-testing:ProbeHostTests/ProbeHostTests/test05SmallInteraction','-only-testing:ProbeHostTests/ProbeHostTests/test06WideInteraction'],
+    'notifications':['-only-testing:ProbeHostTests/ProbeHostTests/test02NotificationHosts'],
     'small':['-only-testing:ProbeHostTests/ProbeHostTests/test03SmallHomeHost']}.get(tests,[]))
 assert signing in ('unsigned','adhoc-local'), 'Unknown simulator signing mode'
 signing_flags=(['CODE_SIGNING_ALLOWED=NO','CODE_SIGNING_REQUIRED=NO'] if signing=='unsigned' else

@@ -10,6 +10,7 @@ on:
           - all
           - notifications
           - small
+          - interactions
       signing:
         description: Simulator signing experiment (no Apple account)
         type: choice

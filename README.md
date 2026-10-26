@@ -51,3 +51,5 @@ home copy truncated. Small-only run 40220928347, tested commit
 inspection showed the full Korean copy with no ellipsis and a larger Moa.
 This is one iPhone 16/iOS18.5 observation, not all-device or motion acceptance.
 Use `-f tests=small` for the small-only scope. Geometric media remains a fixture.
+
+Interaction follow-up: tests=interactions taps the visible Moa button twice, requires accessible pose change/restoration without app entry, then verifies the media destination. Captures require visual review. No continuous-motion or all-device claim. Visual size/color and all three approved PNGs are unchanged.

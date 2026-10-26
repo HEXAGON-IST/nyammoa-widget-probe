@@ -36,6 +36,8 @@ struct ProbeWidgetView: View {
                 .rotationEffect(.degrees(entry.reaction ? -5 : 0))
                 .animation(.spring(duration: 0.76), value: entry.reaction)
         }.buttonStyle(.plain)
+            .accessibilityLabel("모아 반응")
+            .accessibilityValue(entry.reaction ? "B" : "A")
     }
     var body: some View {
         Group {

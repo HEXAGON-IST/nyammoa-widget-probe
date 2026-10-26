@@ -99,7 +99,7 @@ final class ProbeHostTests: XCTestCase {
         return false
     }
 
-    func addWidget(_ surface: String, medium: Bool) throws {
+    func addWidget(_ surface: String, medium: Bool, react: Bool = false) throws {
         XCUIDevice.shared.press(.home); Thread.sleep(forTimeInterval: 2)
         let icon = board.icons.matching(NSPredicate(format: "identifier == %@ AND (value == nil OR NOT (value BEGINSWITH %@))", "냠모아 v25 검증", "Widget")).firstMatch
         guard icon.waitForExistence(timeout: 10) else { try unavailable(surface, "Probe app icon absent on current page"); return }
@@ -128,6 +128,30 @@ final class ProbeHostTests: XCTestCase {
         _ = copy.waitForExistence(timeout: 20)
         shot(surface + "-home")
         result(surface, copy.exists ? "WIDGET_CONTENT_OBSERVED" : "WIDGET_FRAME_OBSERVED_TEXT_UNVERIFIED", "Visible OS widget; family selected in gallery, screenshot review required")
+        if react {
+            let pet = widget.buttons["모아 반응"]
+            guard pet.waitForExistence(timeout: 10) && pet.isHittable else {
+                try unavailable(surface + "-REACT", "Character button not hittable"); return
+            }
+            let before = pet.value as? String ?? "UNKNOWN"
+            shot(surface + "-reaction-before")
+            pet.tap()
+            let changed = NSPredicate(format: "value != %@", before)
+            let response = XCTNSPredicateExpectation(predicate: changed, object: pet)
+            guard XCTWaiter.wait(for: [response], timeout: 15) == .completed else {
+                try unavailable(surface + "-REACT", "No accessible pose change after real tap"); return
+            }
+            shot(surface + "-reaction-after")
+            XCTAssertFalse(app.state == .runningForeground, "Character tap must remain in widget")
+            result(surface + "-REACT", "POSE_CHANGE_OBSERVED", "Before " + before + "; after " + (pet.value as? String ?? "UNKNOWN") + "; temporal motion not measured")
+            pet.tap()
+            let restored = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", before), object: pet)
+            guard XCTWaiter.wait(for: [restored], timeout: 15) == .completed else {
+                try unavailable(surface + "-REPEAT", "Second tap did not restore pose"); return
+            }
+            shot(surface + "-reaction-restored")
+            result(surface + "-REPEAT", "POSE_RESTORED", before)
+        }
         widget.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.8)).tap()
         guard app.wait(for: .runningForeground, timeout: 10) else { try unavailable(surface, "Widget destination not foreground"); return }
         let status = app.staticTexts["probe.status"]
@@ -147,6 +171,9 @@ final class ProbeHostTests: XCTestCase {
         }
         return nil
     }
+
+    func test05SmallInteraction() throws { try addWidget("H-S", medium: false, react: true) }
+    func test06WideInteraction() throws { try addWidget("H-W", medium: true, react: true) }
 
     func test03SmallHomeHost() throws { try addWidget("H-S", medium: false) }
     func test04WideHomeHost() throws { try addWidget("H-W", medium: true) }
