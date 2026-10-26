@@ -42,12 +42,12 @@ struct ProbeWidgetView: View {
     var body: some View {
         Group {
             if family == .systemSmall {
-                VStack(spacing: 6) { HStack(spacing: 4) { pet; Text(ProbeData.copy).font(.system(size: 10)).lineLimit(5).minimumScaleFactor(0.8).layoutPriority(1) }; Image("post").resizable().scaledToFit() }
+                VStack(spacing: 6) { HStack(spacing: 4) { pet; Text(ProbeData.copy).font(.custom("GamjaFlower-Regular", size: 14, relativeTo: .caption)).multilineTextAlignment(.center).frame(maxWidth: .infinity, alignment: .center).lineLimit(5).minimumScaleFactor(0.85).layoutPriority(1) }; Image("post").resizable().scaledToFit() }
             } else {
                 GeometryReader { geometry in
                     HStack(spacing: 8) {
                         Image("post").resizable().scaledToFit().frame(width: geometry.size.width * 0.54)
-                        VStack(spacing: 6) { pet; Text(ProbeData.copy).font(.system(size: 12)).frame(maxWidth: .infinity, alignment: .leading) }.frame(maxWidth: .infinity)
+                        VStack(spacing: 6) { pet; Text(ProbeData.copy).font(.custom("GamjaFlower-Regular", size: 16, relativeTo: .caption)).multilineTextAlignment(.center).lineLimit(3).minimumScaleFactor(0.85).frame(maxWidth: .infinity, alignment: .center) }.frame(maxWidth: .infinity)
                     }.frame(height: geometry.size.height)
                 }
             }

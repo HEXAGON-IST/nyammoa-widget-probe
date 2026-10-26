@@ -53,3 +53,5 @@ This is one iPhone 16/iOS18.5 observation, not all-device or motion acceptance.
 Use `-f tests=small` for the small-only scope. Geometric media remains a fixture.
 
 Interaction follow-up: tests=interactions taps the visible Moa button twice, requires accessible pose change/restoration without app entry, then verifies the media destination. Captures require visual review. No continuous-motion or all-device claim. Visual size/color and all three approved PNGs are unchanged.
+
+Home-only font follow-up: bundled unmodified GamjaFlower-Regular.ttf from Google Fonts, with original OFL license. Small14pt/medium16pt, center-aligned relative to Moa. Notification visuals unchanged. Font is a proposed choice; audience preference and all-device layout acceptance remain unverified.

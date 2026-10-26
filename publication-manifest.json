@@ -53,8 +53,8 @@
     },
     {
       "path": "ios/AppInfo.plist",
-      "sha256": "ce78b88d1485892d0a91ce9cfead03ee57b5b8c227183fab07000282848a9997",
-      "bytes": 944
+      "sha256": "42b12496afb867fa7c9078087cd9104761f9d4f0f47d1dd8d193c11fa38eb6e4",
+      "bytes": 1029
     },
     {
       "path": "ios/inspect-metadata.py",
@@ -63,8 +63,8 @@
     },
     {
       "path": "ios/MoaVisualProbe.xcodeproj/project.pbxproj",
-      "sha256": "315c577955a780acec7dbcbd0ee72e10cf2e5a790aaa0a540501c75594c21821",
-      "bytes": 21549
+      "sha256": "1f6540a92f2111f1de43f082a6b70cf33fa46d4d4cda98f0ca3dfde8de211246",
+      "bytes": 22322
     },
     {
       "path": "ios/MoaVisualProbe.xcodeproj/xcshareddata/xcschemes/MoaHostChecks.xcscheme",
@@ -103,8 +103,8 @@
     },
     {
       "path": "ios/ProbeWidget.swift",
-      "sha256": "450875ec82ef4de5d90491385a79d25b1dc3a34bb61638c9fd4b5be5ee4c58b0",
-      "bytes": 3248
+      "sha256": "df735548238d2a96f2d979fb3c83a6d9677fec3eb7404e548e137ca6d284b62f",
+      "bytes": 3487
     },
     {
       "path": "ios/run-host.py",
@@ -227,6 +227,16 @@
       "bytes": 1146
     },
     {
+      "path": "ios/Shared/GamjaFlower-Regular.ttf",
+      "sha256": "ece32819ed58536355a49a095b0cdfdd3b8ef9081c5ed9ca1cef8f5d999ae1ac",
+      "bytes": 12615444
+    },
+    {
+      "path": "ios/Shared/OFL-GamjaFlower.txt",
+      "sha256": "39de3de5f1873f89bca4af37823ab22e28e88d0d8f7fe2f07e82e9e6e9bf7b70",
+      "bytes": 4354
+    },
+    {
       "path": "ios/Shared/post.png",
       "sha256": "3548953353532dd3e06c0f655ab7b79a3e577a0b856cd2d12516e7131529bddd",
       "bytes": 1146
@@ -278,13 +288,13 @@
     },
     {
       "path": "ios/WidgetInfo.plist",
-      "sha256": "60296467a440be61389f841d8f57605b0607cf0c1283c9856edf9cd07944b25f",
-      "bytes": 873
+      "sha256": "5deb229502c3a250571a0d6c6297b2541c3d35c31f88e43f75fe5a1f83bdfc90",
+      "bytes": 958
     },
     {
       "path": "README.md",
-      "sha256": "1a78108b70ff8eb7ba3b31b4fa201a8be902a560d98c92f2206c3030134bd44f",
-      "bytes": 3747
+      "sha256": "1dd764ed17cd81d43e198d5ba09ebe5f4472e9775ba624de8ab87686edc1dca3",
+      "bytes": 4048
     }
   ]
 }

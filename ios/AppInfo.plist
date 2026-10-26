@@ -31,5 +31,9 @@
 	<string>1</string>
 	<key>UILaunchScreen</key>
 	<dict/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>GamjaFlower-Regular.ttf</string>
+	</array>
 </dict>
 </plist>
